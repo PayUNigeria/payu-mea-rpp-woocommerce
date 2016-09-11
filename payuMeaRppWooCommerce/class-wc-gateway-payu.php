@@ -285,6 +285,7 @@ function init_your_gateway_class() {
 			//require('library.payu/classes/class.PayuRedirectPaymentPage.php');
 			require(WP_PLUGIN_DIR . "/" . plugin_basename( dirname(__FILE__)) . '/library.payu/classes/class.PayuRedirectPaymentPage.php');
 			$redirectapi = '/rpp.do?PayUReference=';
+			$redirectChannel = 'responsive';
 			
 			//$this->params[$paymentType] = $_POST['payu_transaction_type']; 
 			$transactionTypeSelection = $_POST['payu_transaction_type'];
@@ -399,6 +400,7 @@ function init_your_gateway_class() {
 				//$additionalInformationArray['notificationUrl'] = get_option('payuRedirect_notificationURL' );
 				$additionalInformationArray['returnUrl'] = $this->notify_url."&order_id=".$order_id;
 				$additionalInformationArray['merchantReference'] = (string)$order_id;
+				$additionalInformationArray['redirectChannel'] = $redirectChannel;
 
 				if (!is_user_logged_in() ) {										
 					$additionalInformationArray['callCenterRepId'] = "Unknown";
